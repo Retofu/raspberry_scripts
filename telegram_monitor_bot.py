@@ -14,6 +14,7 @@ from datetime import datetime
 import logging
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
+from config import BOT_TOKEN
 
 # Настройка логирования
 logging.basicConfig(
@@ -23,7 +24,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Конфигурация
-TELEGRAM_TOKEN = "YOUR_BOT_TOKEN_HERE"  # Замените на ваш токен
+TELEGRAM_TOKEN = BOT_TOKEN
 ALLOWED_USERS = []  # Список разрешенных пользователей (ID из Telegram)
 
 def run_command(command):
