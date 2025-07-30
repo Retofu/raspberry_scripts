@@ -182,7 +182,7 @@ def format_status_message(status):
     
     # Диск
     message += f"💾 <b>Диск:</b>\n"
-    message += f"   Использование: {status['disk_usage']}\n"
+    message += f"   Использование: {status['disk_usage']}%\n"
     message += f"   Свободно: {status['disk_available']}\n"
     message += f"   {status['disk_status']}\n\n"
     

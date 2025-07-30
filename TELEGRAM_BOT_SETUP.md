@@ -19,20 +19,40 @@ sudo apt-get update
 # Устанавливаем Python и pip (если не установлены)
 sudo apt-get install python3 python3-pip
 
-# Устанавливаем библиотеку для Telegram
-pip3 install python-telegram-bot
-
-# Или через apt (альтернативный способ)
+# Рекомендуемый способ: установка python-telegram-bot через apt
 sudo apt-get install python3-telegram-bot
+```
+
+**Если нужен pip (например, для виртуального окружения):**
+
+```bash
+# Виртуальное окружение (рекомендуется для pip)
+sudo apt-get install python3-venv
+python3 -m venv ~/telegram_bot_env
+source ~/telegram_bot_env/bin/activate
+pip install python-telegram-bot
+# Запуск бота из виртуального окружения:
+python telegram_monitor_bot.py
+```
+
+**Если pip3 install не работает из-за ошибки externally-managed-environment:**
+- Используйте только в виртуальном окружении, либо добавьте флаг --user или --break-system-packages (не рекомендуется):
+
+```bash
+pip3 install python-telegram-bot --user
+# или
+pip3 install python-telegram-bot --break-system-packages
 ```
 
 ### 3. Настройка бота
 
-1. **Откройте файл** `telegram_monitor_bot.py`
-2. **Замените строку** `TELEGRAM_TOKEN = "YOUR_BOT_TOKEN_HERE"` на ваш токен:
+1. **Откройте файл** `config.py`
+2. **Замените строку** `BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"` на ваш токен:
    ```python
-   TELEGRAM_TOKEN = "123456789:ABCdefGHIjklMNOpqrsTUVwxyz"
+   BOT_TOKEN = "123456789:ABCdefGHIjklMNOpqrsTUVwxyz"
    ```
+
+**Примечание:** Токен теперь хранится в отдельном файле `config.py` для безопасности.
 
 ### 4. Настройка безопасности (опционально)
 
@@ -138,9 +158,8 @@ crontab -e
 ## 🐛 Устранение проблем
 
 ### Ошибка "ModuleNotFoundError: No module named 'telegram'"
-```bash
-pip3 install python-telegram-bot --upgrade
-```
+- Если используете apt: `sudo apt-get install python3-telegram-bot`
+- Если используете pip: `pip3 install python-telegram-bot --user` или используйте виртуальное окружение
 
 ### Ошибка "Permission denied"
 ```bash
